@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script
+src="https://code.responsivevoice.org/responsivevoice.js?key=rAelH1st"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Jogo de Adivinhar o Número</title>
+</head>
+<body>
+    <div class="caixa1">
+        <div class="caixa2">
+            <div class="caixa3">
+                <h1 class="titulo">FIRE BET</h1>
+                <p class="instrucao">Digite um número entre <strong>1 e 10</strong></p>
+                
+                <input class="input-palpite" type="text" id="input-palpite-id" min="1" max="10" placeholder="-">
+                <button class="botao-acao" id="botao-adivinhar">TENTAR SORTE</button>
+                <br>
+                <button class="botao-acao" id="botao-novo-jogo">NOVO JOGO</button>
+                
+                <p id="resultado-palpite" class="mensagem-feedback"></p>
+            </div>
+
+            <div class="container-imagem">
+                <img class="imagem-firegirl" src="assets/img/firegirl.gif" alt="Firegirl Animation">
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
