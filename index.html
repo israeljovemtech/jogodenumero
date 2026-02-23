@@ -3,31 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script
-src="https://code.responsivevoice.org/responsivevoice.js?key=rAelH1st"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=rAelH1st"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Jogo de Adivinhar o Número</title>
+    <title>Jogo de Adivinhar o Número - FIRE GUESS | ISRAEL MENEZES</title>
 </head>
 <body>
-    <div class="caixa1">
-        <div class="caixa2">
-            <div class="caixa3">
-                <h1 class="titulo">FIRE BET</h1>
-                <p class="instrucao">Digite um número entre <strong>1 e 10</strong></p>
-                
-                <input class="input-palpite" type="text" id="input-palpite-id" min="1" max="10" placeholder="-">
-                <button class="botao-acao" id="botao-adivinhar">TENTAR SORTE</button>
-                <br>
-                <button class="botao-acao" id="botao-novo-jogo">NOVO JOGO</button>
-                
-                <p id="resultado-palpite" class="mensagem-feedback"></p>
-            </div>
 
-            <div class="container-imagem">
-                <img class="imagem-firegirl" src="assets/img/firegirl.gif" alt="Firegirl Animation">
+    <div id="tela-inicio" class="overlay">
+        <div class="caixa-titulo">
+            <h1 class="pixel-titulo-grande">FIRE GUESS</h1>
+            <p class="subtitulo-pixel">UMA AVENTURA FEITA POR ISRAEL</p>
+            <div class="espaco-blink">
+                <button id="botao-start" class="botao-pixel-start">PRESS START</button>
+            </div>
+        </div>
+        <p class="copyright-snes">2026 ISRAEL MENEZES</p>
+    </div>
+
+    <div id="tela-loading" class="overlay escondido">
+        <div class="caixa-loading">
+            <p class="texto-loading">CARREGANDO...</p>
+            <div class="barra-progresso-container">
+                <div id="barra-progresso" class="barra-progresso-fill"></div>
             </div>
         </div>
     </div>
+
+    <audio id="musica-jogo" loop>
+        <source src="assets/sounds/musicadefundo.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <header class="cabecalho">
+        <div class="logo-texto">ISRAEL MENEZES</div>
+        <nav class="menu">
+            <span>Fire Guess em Desenvolvimento</span>
+        </nav>
+    </header>
+
+    <main class="conteudo-principal">
+        
+        <aside class="painel-regras">
+            <h2>Como Jogar</h2>
+            <div class="linha-divisoria"></div>
+            <ul>
+                <li><strong>1.</strong> O oráculo pensou em um número secreto entre 1 e 50.</li>
+                <li><strong>2.</strong> Digite o seu palpite na caixa de texto.</li>
+                <li><strong>3.</strong> Clique em "Tentar Sorte".</li>
+                <li><strong>4.</strong> Preste atenção nas dicas (maior ou menor).</li>
+                <li><strong>5.</strong> Tente acertar usando o mínimo de tentativas possíveis!</li>
+            </ul>
+            <div class="aviso-gamer">Que a sorte esteja com você!</div>
+        </aside>
+
+        <div class="caixa1">
+            <div class="caixa2">
+                <div class="caixa3">
+                    <h1 class="titulo">FIRE GUESS</h1>
+                    <p class="instrucao">Digite um número entre <strong>1 e 50</strong></p>
+                    
+                    <input class="input-palpite" type="text" id="input-palpite-id" min="1" max="50" placeholder="?" autocomplete="off">
+                    
+                    <button class="botao-acao" id="botao-adivinhar">TENTAR SORTE</button><br>
+                    <button class="botao-acao" id="botao-novo-jogo" disabled>NOVO JOGO</button>
+                    
+                    <p id="resultado-palpite" class="mensagem-feedback"></p>
+                </div>
+
+                <div class="container-imagem">
+                    <img class="imagem-firegirl" src="assets/img/firegirl.gif" alt="Firegirl Animation">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="rodape">
+        <p>Projeto ISRAEL MENEZES</p>
+    </footer>
+
     <script src="app.js"></script>
 </body>
 </html>

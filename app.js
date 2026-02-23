@@ -1,37 +1,104 @@
-const botaoNovoJogo = document.getElementById('botao-novo-jogo');
+
+const telaInicio = document.getElementById('tela-inicio');
+const telaLoading = document.getElementById('tela-loading');
+const botaoStart = document.getElementById('botao-start');
+const barraProgresso = document.getElementById('barra-progresso');
+const musicaJogo = document.getElementById('musica-jogo');
+
 const botaoAdivinhar = document.getElementById('botao-adivinhar');
-const inputPalpite = document.getElementById('input-palpite-id');
-const resultadoPalpite = document.getElementById('resultado-palpite');
-const numeroSecreto = Math.floor(Math.random() * 10) + 1;
-let tentativas = 0;
+const botaoNovoJogo  = document.getElementById('botao-novo-jogo');
+const inputPalpite   = document.getElementById('input-palpite-id');
+const resultado      = document.getElementById('resultado-palpite');
 
-botaoAdivinhar.addEventListener('click', () => {
-    const palpite = parseInt(inputPalpite.value);
-    tentativas++;
+let numeroSecreto;
+let tentativas;
 
-    if (isNaN(palpite) || palpite < 1 || palpite > 10) {
-        resultadoPalpite.textContent = 'Por favor, digite um número válido entre 1 e 10.';
-        responsiveVoice.speak('Por favor, digite um número válido entre 1 e 10.', 'Brazilian Portuguese Female');
-    } else if (palpite === numeroSecreto) {
-        resultadoPalpite.textContent = `Parabéns! Você acertou o número secreto ${numeroSecreto} em ${tentativas} tentativas.`;
-        responsiveVoice.speak('Parabéns! Você acertou o número secreto.', 'Brazilian Portuguese Female');
-        botaoAdivinhar.disabled = true;
-    } else if (palpite < numeroSecreto) {
-        resultadoPalpite.textContent = 'Tente um número maior.';
-        responsiveVoice.speak('Tente um número maior.', 'Brazilian Portuguese Female');
-    } else {
-        resultadoPalpite.textContent = 'Tente um número menor.';
-        responsiveVoice.speak('Tente um número menor.', 'Brazilian Portuguese Female');
-    }
+
+function falar(texto) {
+    setTimeout(() => {
+        responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate: 1.1});
+    }, 100);
+}
+
+
+botaoStart.addEventListener('click', () => {
+
+    musicaJogo.volume = 0.1;
+    musicaJogo.play();
+
+
+    telaInicio.classList.add('escondido');
+    telaLoading.classList.remove('escondido');
+
+
+    let progresso = 0;
+    const intervalo = setInterval(() => {
+
+        progresso += Math.floor(Math.random() * 15) + 5; 
+        
+        if (progresso >= 100) {
+            progresso = 100;
+            barraProgresso.style.width = progresso + '%';
+            clearInterval(intervalo);
+            
+
+            setTimeout(() => {
+                telaLoading.classList.add('escondido');
+                iniciarJogo();
+                falar("Bem-vindo a Fire Guess! Tente adivinhar o número secreto.");
+            }, 600); 
+        } else {
+            barraProgresso.style.width = progresso + '%';
+        }
+    }, 300); 
 });
 
-function resetarJogo() {
-    location.reload();
+function iniciarJogo() {
+    numeroSecreto = Math.floor(Math.random() * 50) + 1;
+    tentativas = 0;
+    
+    inputPalpite.value = '';
+    inputPalpite.focus();
+    resultado.textContent = '';
+    botaoAdivinhar.disabled = false;
+    botaoNovoJogo.disabled = true;
 }
 
-botaoNovoJogo.addEventListener('click', resetarJogo);
-document.getElementById('botao-novo-jogo').setAttribute('disabled', true);
 
-if (botaoAdivinhar.disabled) {
-    document.getElementById('botao-novo-jogo').setAttribute('enabled', true);
-}
+botaoAdivinhar.addEventListener('click', () => {
+    const palpite = Number(inputPalpite.value);
+    tentativas++;
+
+    if (!Number.isInteger(palpite) || palpite < 1 || palpite > 50) {
+        resultado.textContent = 'Digite um número entre 1 e 50!';
+        falar('Digite um número entre 1 e 50');
+        inputPalpite.select();
+        return;
+    }
+
+    if (palpite === numeroSecreto) {
+        resultado.textContent = `🔥 PARABÉNS! Você acertou o ${numeroSecreto} em ${tentativas} tentativa${tentativas === 1 ? '' : 's'}!`;
+        falar('Parabéns! Você acertou!');
+        botaoAdivinhar.disabled = true;
+        botaoNovoJogo.disabled = false;
+        inputPalpite.disabled = true;
+    } 
+    else if (palpite < numeroSecreto) {
+        resultado.textContent = 'Tente um número MAIOR.';
+        falar('Tente um número maior');
+    } 
+    else {
+        resultado.textContent = 'Tente um número MENOR.';
+        falar('Tente um número menor');
+    }
+
+    inputPalpite.value = '';
+    inputPalpite.focus();
+});
+
+
+botaoNovoJogo.addEventListener('click', () => {
+    inputPalpite.disabled = false;
+    iniciarJogo();
+    falar('Novo jogo iniciado. Boa sorte!');
+});

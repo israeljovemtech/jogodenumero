@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;700&display=swap');
 
 * {
     margin: 0;
@@ -7,46 +7,46 @@
 }
 
 body {
-    font-family: 'Bebas Neue', cursive;
-    background-color: #8a0707;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #1a0101;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+    position: relative; 
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: url('assets/img/nuvensgif.gif');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    overflow: hidden;
+    opacity: 0.2; 
+    z-index: -1; 
+    pointer-events: none;
 }
 
-.caixa1 {
-    background-image: url('assets/img/fogo3.gif');
-    background-size: cover;
-    background-position: center;
-    width: 90%;
-    max-width: 900px;
-    height: auto;
-    min-height: 500px;
-    border-radius: 30px;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    overflow: hidden;
-    border: 3px solid rgba(255, 255, 255, 0.1);
-}
-
-.caixa2 {
-    display: flex;
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.1); 
-    backdrop-filter: blur(2px);
-}
-
-.caixa3 {
-    flex: 1;
-    padding: 50px;
+    height: 100%;
+    background-color: #050000;
+    background-image: linear-gradient(rgba(255, 68, 0, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 68, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 9999;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -54,82 +54,266 @@ body {
     text-align: center;
 }
 
-.container-imagem {
-    flex: 1;
+.escondido {
+    display: none !important;
+}
+
+.pixel-titulo-grande {
+    font-size: 4.5rem;
+    color: #ffde00;
+    text-shadow: 6px 6px 0px #7a0000;
+    margin-bottom: 20px;
+    animation: flutuar 3s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.subtitulo-pixel {
+    color: #ff4400;
+    font-size: 1rem;
+    margin-bottom: 80px;
+    letter-spacing: 2px;
+}
+
+.botao-pixel-start {
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    cursor: pointer;
+    animation: piscar 1s infinite;
+}
+
+.botao-pixel-start:hover {
+    color: #ffde00;
+}
+
+@keyframes piscar {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.copyright-snes {
+    position: absolute;
+    bottom: 30px;
+    font-size: 0.6rem;
+    color: #555;
+}
+
+.texto-loading {
+    color: #ffde00;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 0px #7a0000;
+}
+
+.barra-progresso-container {
+    width: 300px;
+    height: 25px;
+    border: 4px solid #fff;
+    padding: 2px;
+    background: #000;
+    box-shadow: 4px 4px 0px #7a0000;
+}
+
+.barra-progresso-fill {
+    width: 0%;
+    height: 100%;
+    background-color: #ff4400;
+    transition: width 0.2s ease;
+}
+
+.cabecalho {
+    width: 100%;
+    background: rgba(10, 0, 0, 0.9);
+    padding: 25px 50px;
     display: flex;
-    align-items: flex-end; 
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #ff4400; 
+    box-shadow: 0 4px 0px #7a0000;
+}
+
+.logo-texto {
+    font-size: 1.2rem;
+    color: #ffde00;
+    text-shadow: 2px 2px 0px #7a0000;
+}
+
+.menu span {
+    font-size: 0.7rem;
+    color: #ff4400;
+}
+
+.conteudo-principal {
+    display: flex;
+    gap: 30px;
+    width: 95%;
+    max-width: 1200px;
+    margin: 40px 0;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
-.imagem-firegirl {
-    width: 100%;
-    max-width: 1000px;
+.painel-regras {
+    background: rgba(0, 0, 0, 0.8);
+    border: 4px solid #ff4400;
+    padding: 25px;
+    width: 350px;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.5);
 }
 
+.painel-regras h2 {
+    font-size: 1rem;
+    color: #ffde00;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.linha-divisoria {
+    height: 4px;
+    background: #ff4400;
+    margin: 15px 0;
+}
+
+.painel-regras li {
+    margin-bottom: 15px;
+    font-size: 0.65rem; 
+    line-height: 1.8;
+    color: #e0e0e0;
+}
+
+.painel-regras li strong {
+    color: #ff4400;
+}
+
+.aviso-gamer {
+    text-align: center;
+    font-size: 0.6rem;
+    color: #ffde00;
+    margin-top: 10px;
+}
+
+/* --- CAIXA DO JOGO --- */
+.caixa1 {
+    background-image: url('assets/img/fogo3.gif');
+    background-size: cover;
+    background-position: center;
+    flex-grow: 1;
+    max-width: 750px;
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    border: 4px solid #ff4400;
+}
+
+.caixa2 {
+    display: flex;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(2px);
+}
+
+.caixa3 {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
 .titulo {
-    font-size: 100px;
-    line-height: 1;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+    font-size: 3rem;
+    margin-bottom: 20px;
     color: #ffde00;
-    text-shadow: 3px 3px 0px #7a0000;
+    text-shadow: 4px 4px 0px #7a0000;
 }
 
 .instrucao {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+    font-size: 0.7rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
 }
 
 .input-palpite {
-    width: 120px;
-    height: 80px;
-    font-size: 3rem;
-    border-radius: 15px;
-    border: none;
+    width: 100px;
+    height: 70px;
+    font-size: 1.5rem; 
+    border: 4px solid #ff4400;
     text-align: center;
-    font-family: 'Bebas Neue';
-    background: white;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-    margin-bottom: 20px;
+    font-family: 'Press Start 2P', cursive;
+    background: #fff;
+    margin-bottom: 25px;
+    outline: none;
 }
 
 .botao-acao {
-    padding: 15px 40px;
-    font-size: 1.8rem;
-    font-family: 'Bebas Neue';
+    padding: 15px 20px;
+    font-size: 0.8rem;
+    font-family: 'Press Start 2P', cursive;
     background-color: #ff4400;
     color: white;
     border: none;
-    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 0 #7a0000;
+    box-shadow: 0 6px 0 #7a0000;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .botao-acao:hover {
     background-color: #ffde00;
     color: #000;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 0 #b39b00;
+    box-shadow: 0 6px 0 #b39b00;
 }
 
 .botao-acao:active {
-    transform: translateY(2px);
+    transform: translateY(4px);
     box-shadow: 0 2px 0 #b39b00;
 }
 
 .botao-acao:disabled {
-    background-color: #ccc;
-    color: #666;
+    background-color: #555;
+    color: #888;
+    box-shadow: 0 6px 0 #222;
     cursor: not-allowed;
-    box-shadow: none;
 }
 
 .mensagem-feedback {
-    margin-top: 20px;
-    font-size: 1.4rem;
-    min-height: 1.5em;
-    font-weight: bold;
+    margin-top: 15px;
+    font-size: 0.7rem;
+    color: #ffde00;
+    line-height: 1.6;
+}
+
+.container-imagem {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.imagem-firegirl {
+    width: 100%;
+    max-width: 350px;
+    image-rendering: pixelated; 
+}
+
+.rodape {
+    width: 100%;
+    background: rgba(10, 0, 0, 0.9);
+    padding: 20px;
+    text-align: center;
+    border-top: 4px solid #ff4400;
+}
+
+.rodape p {
+    font-size: 0.5rem;
+    color: #ccc;
+    margin-bottom: 5px;
 }
